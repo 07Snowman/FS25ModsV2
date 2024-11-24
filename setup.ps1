@@ -1,39 +1,88 @@
-# Define repository download URL and file paths
-$repoUrl = "https://github.com/07Snowman/Fs25Mods/archive/refs/heads/main.zip"
-$zipFile = "repo.zip"
-$desktopPath = [System.IO.Path]::Combine($env:USERPROFILE, "Desktop")
+# Define repository URL and file paths
+$repoUrl = "https://github.com/07Snowman/Fs25ModsV2.git"
+$repoFolder = "Fs25ModsV2"
 $documentsPath = [System.IO.Path]::Combine($env:USERPROFILE, "Documents", "My Games", "FarmingSimulator2025", "Mods")
-$extractPath = $desktopPath
 $modsFolder = $documentsPath
-$repoDownloadFolder = $documentsPath
-
 
 Write-Host "[INFO] Starting script execution..."
 
-# Step 1: Download repository as a ZIP file
-Write-Host "[INFO] Downloading repository..."
-Invoke-RestMethod -Uri $repoUrl -OutFile $zipFile
-Write-Host "[INFO] Download complete: $zipFile"
+# Step 1: Clone the repository
+Write-Host "[INFO] Cloning repository..."
+git clone $repoUrl $repoFolder
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[ERROR] Failed to clone repository."
+    exit $LASTEXITCODE
+}
+Write-Host "[INFO] Clone complete: $repoFolder"
+# Define repository URL and file paths
+$repoUrl = "https://github.com/07Snowman/Fs25ModsV2.git"
+$repoFolder = "Fs25ModsV2"
+$documentsPath = [System.IO.Path]::Combine($env:USERPROFILE, "Documents", "My Games", "FarmingSimulator2025", "Mods")
+$modsFolder = $documentsPath
 
-# Step 2: Extract the ZIP file
-Write-Host "[INFO] Extracting repository..."
-Expand-Archive -Path $zipFile -DestinationPath $extractPath -Force
-Write-Host "[INFO] Extraction complete: $extractPath"
+Write-Host "[INFO] Starting script execution..."
 
-# Step 3: Move extracted folder to the desired location
-$extractedFolder = [System.IO.Path]::Combine($extractPath, "Fs25Mods-main")
-if (Test-Path $extractedFolder) {
-    Move-Item -Path $extractedFolder -Destination $repoDownloadFolder -Force
-    Write-Host "[INFO] Moved extracted folder to: $repoDownloadFolder"
-} else {
-    Write-Host "[ERROR] Extraction failed or folder not found."
+# Step 1: Clone the repository
+Write-Host "[INFO] Cloning repository..."
+git clone $repoUrl $repoFolder
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[ERROR] Failed to clone repository."
+    exit $LASTEXITCODE
+}
+Write-Host "[INFO] Clone complete: $repoFolder"
+
+# Step 2: Run git lfs pull
+Write-Host "[INFO] Running git lfs pull..."
+Set-Location -Path $repoFolder
+git lfs pull
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[ERROR] Failed to run git lfs pull."
+    exit $LASTEXITCODE
+}
+Set-Location -Path ..
+
+# Step 3: Extract ZIP files from repository folder to mods folder
+function Extract-ZipFiles($sourceFolder, $destinationFolder) {
+    if (!(Test-Path $sourceFolder)) {
+        Write-Host "[ERROR] Source folder does not exist: $sourceFolder"
+        return
+    }
+
+    if (!(Test-Path $destinationFolder)) {
+        New-Item -Path $destinationFolder -ItemType Directory
+        Write-Host "[INFO] Created destination folder: $destinationFolder"
+    }
+
+    Get-ChildItem -Path $sourceFolder -Recurse -Filter *.zip | ForEach-Object {
+        $zipPath = $_.FullName
+        $destinationPath = $destinationFolder
+
+        if (!(Test-Path $destinationPath) -or (Get-Item $zipPath).LastWriteTime -gt (Get-Item $destinationPath).LastWriteTime) {
+            Expand-Archive -Path $zipPath -DestinationPath $destinationPath -Force
+            Write-Host "[INFO] Extracted: $zipPath -> $destinationPath"
+        } else {
+            Write-Host "[INFO] Skipped (already exists and is up-to-date): $destinationPath"
+        }
+    }
 }
 
-# Step 4: Clean up the ZIP file
-Remove-Item $zipFile
-Write-Host "[INFO] Cleaned up temporary files."
+Write-Host "[INFO] Extracting ZIP files from $repoFolder to $modsFolder..."
+Extract-ZipFiles -sourceFolder $repoFolder -destinationFolder $modsFolder
+Write-Host "[INFO] ZIP files extracted successfully."
 
-# Step 5: Move ZIP files from repository folder to mods folder
+# Step 4: Notify completion
+Write-Host "[INFO] Setup completed successfully!"
+# Step 2: Run git lfs pull
+Write-Host "[INFO] Running git lfs pull..."
+Set-Location -Path $repoFolder
+git lfs pull
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "[ERROR] Failed to run git lfs pull."
+    exit $LASTEXITCODE
+}
+Set-Location -Path ..
+
+# Step 3: Move ZIP files from repository folder to mods folder
 function Move-ZipFiles($sourceFolder, $destinationFolder) {
     if (!(Test-Path $sourceFolder)) {
         Write-Host "[ERROR] Source folder does not exist: $sourceFolder"
@@ -58,11 +107,9 @@ function Move-ZipFiles($sourceFolder, $destinationFolder) {
     }
 }
 
-Write-Host "[INFO] Moving ZIP files from $repoDownloadFolder to $modsFolder..."
-Move-ZipFiles -sourceFolder $repoDownloadFolder -destinationFolder $modsFolder
+Write-Host "[INFO] Moving ZIP files from $repoFolder to $modsFolder..."
+Move-ZipFiles -sourceFolder $repoFolder -destinationFolder $modsFolder
 Write-Host "[INFO] ZIP files moved successfully."
 
-
-
-# Step 7: Notify completion
+# Step 4: Notify completion
 Write-Host "[INFO] Setup completed successfully!"
