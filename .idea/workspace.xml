@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7629b1-ebeb-4492-9487-b2d7af454f11" name="Changes" comment="Enhance setup script and update IntelliJ settings&#10;&#10;Added new test mod">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ff7629b1-ebeb-4492-9487-b2d7af454f11" name="Changes" comment="Enhance setup script and update IntelliJ settings&#10;&#10;Added new test mod" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
