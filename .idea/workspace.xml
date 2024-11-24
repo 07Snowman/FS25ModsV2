@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="ff7629b1-ebeb-4492-9487-b2d7af454f11" name="Changes" comment="&#10;&#10;This commit introduces configuration files for IntelliJ project settings and a PowerShell script for setting up the repository. The configuration files include settings for inspections, VCS, and workspace preferences. The setup script automates the download, extraction, and organization of mod files from the repository.">
+    <list default="true" id="ff7629b1-ebeb-4492-9487-b2d7af454f11" name="Changes" comment="Enhance setup script and update IntelliJ settings&#10;&#10;Added new test mod">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.ps1" beforeDir="false" afterPath="$PROJECT_DIR$/setup.ps1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mods/Mods.zip" beforeDir="false" afterPath="$PROJECT_DIR$/Mods/Mods.zip" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +107,23 @@
       <option name="project" value="LOCAL" />
       <updated>1732422756332</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Enhance setup script and update IntelliJ settings&#10;&#10;Updated the setup script to clone the repository and extract ZIP files directly. Adjusted IntelliJ settings for project configurations and local tasks, and fixed issue in the ProblemsViewState.">
+      <option name="closed" value="true" />
+      <created>1732464794523</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1732464794523</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Enhance setup script and update IntelliJ settings&#10;&#10;Added new test mod">
+      <option name="closed" value="true" />
+      <created>1732465190978</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1732465190978</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +141,9 @@
     <MESSAGE value="s" />
     <MESSAGE value="Add  setup script&#10;&#10;This commit introduces configuration files for IntelliJ project settings and a PowerShell script for setting up the repository. The configuration files include settings for inspections, VCS, and workspace preferences. The setup script automates the download, extraction, and organization of mod files from the repository." />
     <MESSAGE value="&#10;&#10;This commit introduces configuration files for IntelliJ project settings and a PowerShell script for setting up the repository. The configuration files include settings for inspections, VCS, and workspace preferences. The setup script automates the download, extraction, and organization of mod files from the repository." />
-    <option name="LAST_COMMIT_MESSAGE" value="&#10;&#10;This commit introduces configuration files for IntelliJ project settings and a PowerShell script for setting up the repository. The configuration files include settings for inspections, VCS, and workspace preferences. The setup script automates the download, extraction, and organization of mod files from the repository." />
+    <MESSAGE value="Refactor setup script and update IntelliJ config.&#10;&#10;Updated the setup script to use Git for cloning and LFS support, replacing ZIP download and extraction. Modified IntelliJ configuration files to reflect changes and enhance project setup consistency." />
+    <MESSAGE value="Enhance setup script and update IntelliJ settings&#10;&#10;Updated the setup script to clone the repository and extract ZIP files directly. Adjusted IntelliJ settings for project configurations and local tasks, and fixed issue in the ProblemsViewState." />
+    <MESSAGE value="Enhance setup script and update IntelliJ settings&#10;&#10;Added new test mod" />
+    <option name="LAST_COMMIT_MESSAGE" value="Enhance setup script and update IntelliJ settings&#10;&#10;Added new test mod" />
   </component>
 </project>
