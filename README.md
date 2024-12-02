@@ -15,7 +15,7 @@ To clone this repository and automatically move files to the Farming Simulator 2
 Only the mods prior to 12/1/24 
 
 ```
- **Sunday, December, 1st, 2024**
+ Sunday, December, 1st, 2024
 
     • Remove Front loader Axle Locking
       https://www.farming-simulator.com/mod.php?mod_id=303334&title=fs2025
